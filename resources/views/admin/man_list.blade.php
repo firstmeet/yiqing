@@ -120,11 +120,11 @@
 <div class="test">
     @if(!empty($list['data']['rows']))
         <ul class="pagination pagination-lg" >
-            <li class="{{request('page',1)==1?"disabled":""}}"><a href="?name={{request('name')}}&id_card={{request('id_card')}}&areas={{request('areas')}}&page={{request('page')-1}}"  >&laquo;</a></li>
+            <li class="{{request('page',1)==1?"disabled":""}}"><a href="?name={{request('name')}}&id_card={{request('id_card')}}&areas={{request('areas')}}&page={{request('page')-1}}&pageSize={{request('pageSize')}}"  >&laquo;</a></li>
             @for($i=1;$i<=$list['data']['pages'];$i++)
-                <li><a href="?name={{request('name')}}&id_card={{request('id_card')}}&areas={{request('areas')}}&page={{$i}}">{{$i}}</a></li>
+                <li><a href="?name={{request('name')}}&id_card={{request('id_card')}}&areas={{request('areas')}}&page={{$i}}&pageSize={{request('pageSize')}}">{{$i}}</a></li>
             @endfor
-            <li class="{{request('page',1)==$list['data']['pages']?"disabled":""}}"><a href="?name={{request('name')}}&id_card={{request('id_card')}}&areas={{request('areas')}}&page={{request('page')+1}}"  >&raquo;</a></li>
+            <li class="{{request('page',1)==$list['data']['pages']?"disabled":""}}"><a href="?name={{request('name')}}&id_card={{request('id_card')}}&areas={{request('areas')}}&page={{request('page')+1}}&pageSize={{request('pageSize')}}"  >&raquo;</a></li>
         </ul>
         <ul class="pagination pagination-lg" >
           <li>
