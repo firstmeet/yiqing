@@ -9,6 +9,15 @@
     <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
     <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <title>Document</title>
+    <style>
+        .test{
+            display: flex;
+            flex-direction: row;
+        }
+        .table>tbody>tr>td{
+            white-space:nowrap;
+        }
+    </style>
 </head>
 <body>
 <div>
@@ -108,15 +117,29 @@
         </tbody>
     </table>
 </div>
-@if(!empty($list['data']['rows']))
-    <ul class="pagination pagination-lg" >
-        <li class="{{request('page',1)==1?"disabled":""}}"><a href="?name={{request('name')}}&id_card={{request('id_card')}}&areas={{request('areas')}}&page={{request('page')-1}}"  >&laquo;</a></li>
-        @for($i=1;$i<=$list['data']['pages'];$i++)
-            <li><a href="?name={{request('name')}}&id_card={{request('id_card')}}&areas={{request('areas')}}&page={{$i}}">{{$i}}</a></li>
-        @endfor
-        <li class="{{request('page',1)==$list['data']['pages']?"disabled":""}}"><a href="?name={{request('name')}}&id_card={{request('id_card')}}&areas={{request('areas')}}&page={{request('page')+1}}"  >&raquo;</a></li>
-    </ul>
-@endif
+<div class="test">
+    @if(!empty($list['data']['rows']))
+        <ul class="pagination pagination-lg" >
+            <li class="{{request('page',1)==1?"disabled":""}}"><a href="?name={{request('name')}}&id_card={{request('id_card')}}&areas={{request('areas')}}&page={{request('page')-1}}"  >&laquo;</a></li>
+            @for($i=1;$i<=$list['data']['pages'];$i++)
+                <li><a href="?name={{request('name')}}&id_card={{request('id_card')}}&areas={{request('areas')}}&page={{$i}}">{{$i}}</a></li>
+            @endfor
+            <li class="{{request('page',1)==$list['data']['pages']?"disabled":""}}"><a href="?name={{request('name')}}&id_card={{request('id_card')}}&areas={{request('areas')}}&page={{request('page')+1}}"  >&raquo;</a></li>
+        </ul>
+        <ul class="pagination pagination-lg" >
+          <li>
+              <select name="pageSize"  id="pageSize" class="form-control pageSize" style="height: 46px">
+                  <option value>请选择条目</option>
+                  <option value="10" @if(request('pageSize')==10) selected @endif>10</option>
+                  <option value="20" @if(request('pageSize')==20) selected @endif>20</option>
+                  <option value="50" @if(request('pageSize')==50) selected @endif>50</option>
+                  <option value="100" @if(request('pageSize')==100) selected @endif>100</option>
+                  <option value="500" @if(request('pageSize')==500) selected @endif>500</option>
+              </select></li>
+        </ul>
+    @endif
+</div>
+
 <script>
    $(".search").click(function () {
        var name=$("#name").val()
@@ -136,6 +159,12 @@
    })
     $(".disabled").click(function () {
         return false
+    })
+    $(".pageSize").change(function () {
+        var name=$("#name").val()
+        var id_card=$("#id_card").val()
+        var areas=$("#areas").val()
+        window.location.href="?name="+name+"&id_card="+id_card+"&areas="+areas+"&pageSize="+$(".pageSize").val()
     })
 </script>
 </body>
