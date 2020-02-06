@@ -9,24 +9,33 @@
     <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
     <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <title>Document</title>
+    <style>
+        .test{
+            display: flex;
+            flex-direction: row;
+        }
+        .table>tbody>tr>td{
+            white-space:nowrap;
+        }
+    </style>
 </head>
 <body>
 <div>
     <form role="form" class="form-inline">
         <div class="form-group">
-            <label for="name" class="col-sm-3 control-label">姓名</label>
+            <label for="name" class="col-sm-3 control-label" style="line-height: 34px">姓名</label>
             <div class="col-sm-9">
                 <input type="text" class="form-control" id="name" value="{{request('name')}}" placeholder="请输入姓名">
             </div>
         </div>
         <div class="form-group">
-            <label for="id_card" class="col-sm-4 control-label">身份证号</label>
+            <label for="id_card" class="col-sm-4 control-label" style="line-height: 34px">身份证号</label>
             <div class="col-sm-8">
                 <input type="text" class="form-control" id="id_card" value="{{request('id_card')}}" placeholder="请输入身份证号">
             </div>
         </div>
         <div class="form-group">
-            <label for="areas" class="col-sm-4 control-label">来淮南入住县/区</label>
+            <label for="areas" class="col-sm-4 control-label" style="line-height: 34px">来淮南入住县/区</label>
             <div class=" col-sm-8">
                 <select name="areas" id="areas" class="form-control">
                     <option value>请选择...</option>
@@ -57,7 +66,6 @@
         <caption>填报列表</caption>
         <thead>
         <tr>
-            <th>序号</th>
             <th>姓名</th>
             <th>是否本人</th>
             <th>与填报者关系</th>
@@ -84,7 +92,6 @@
             @endempty
         @foreach($list['data']['rows'] as $key=>$value)
             <tr>
-                <td>{{$value['id']}}</td>
                 <td>{{$value['name']}}</td>
                 <td>{{$value['isSelf']}}</td>
                 <td>{{$value['relation']}}</td>
@@ -110,15 +117,29 @@
         </tbody>
     </table>
 </div>
-@if(!empty($list['data']['rows']))
-    <ul class="pagination pagination-lg">
-        <li class="{{request('page',1)==1?"disabled":""}}"><a href="?name={{request('name')}}&id_card={{request('id_card')}}&areas={{request('areas')}}&page={{request('page')-1}}"  >&laquo;</a></li>
-        @for($i=1;$i<=$list['data']['pages'];$i++)
-            <li><a href="?name={{request('name')}}&id_card={{request('id_card')}}&areas={{request('areas')}}&page={{$i}}">{{$i}}</a></li>
-        @endfor
-        <li class="{{request('page',1)==$list['data']['pages']?"disabled":""}}"><a href="?name={{request('name')}}&id_card={{request('id_card')}}&areas={{request('areas')}}&page={{request('page')+1}}"  >&raquo;</a></li>
-    </ul>
-@endif
+<div class="test">
+    @if(!empty($list['data']['rows']))
+        <ul class="pagination pagination-lg" >
+            <li class="{{request('page',1)==1?"disabled":""}}"><a href="?name={{request('name')}}&id_card={{request('id_card')}}&areas={{request('areas')}}&page={{request('page')-1}}"  >&laquo;</a></li>
+            @for($i=1;$i<=$list['data']['pages'];$i++)
+                <li><a href="?name={{request('name')}}&id_card={{request('id_card')}}&areas={{request('areas')}}&page={{$i}}">{{$i}}</a></li>
+            @endfor
+            <li class="{{request('page',1)==$list['data']['pages']?"disabled":""}}"><a href="?name={{request('name')}}&id_card={{request('id_card')}}&areas={{request('areas')}}&page={{request('page')+1}}"  >&raquo;</a></li>
+        </ul>
+        <ul class="pagination pagination-lg" >
+          <li>
+              <select name="pageSize"  id="pageSize" class="form-control pageSize" style="height: 46px">
+                  <option value>请选择条目</option>
+                  <option value="10" @if(request('pageSize')==10) selected @endif>10</option>
+                  <option value="20" @if(request('pageSize')==20) selected @endif>20</option>
+                  <option value="50" @if(request('pageSize')==50) selected @endif>50</option>
+                  <option value="100" @if(request('pageSize')==100) selected @endif>100</option>
+                  <option value="500" @if(request('pageSize')==500) selected @endif>500</option>
+              </select></li>
+        </ul>
+    @endif
+</div>
+
 <script>
    $(".search").click(function () {
        var name=$("#name").val()
@@ -138,6 +159,12 @@
    })
     $(".disabled").click(function () {
         return false
+    })
+    $(".pageSize").change(function () {
+        var name=$("#name").val()
+        var id_card=$("#id_card").val()
+        var areas=$("#areas").val()
+        window.location.href="?name="+name+"&id_card="+id_card+"&areas="+areas+"&pageSize="+$(".pageSize").val()
     })
 </script>
 </body>
