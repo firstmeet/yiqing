@@ -14,19 +14,19 @@
 <div>
     <form role="form" class="form-inline">
         <div class="form-group">
-            <label for="name" class="col-sm-3 control-label">姓名</label>
+            <label for="name" class="col-sm-3 control-label" style="line-height: 34px">姓名</label>
             <div class="col-sm-9">
                 <input type="text" class="form-control" id="name" value="{{request('name')}}" placeholder="请输入姓名">
             </div>
         </div>
         <div class="form-group">
-            <label for="id_card" class="col-sm-4 control-label">身份证号</label>
+            <label for="id_card" class="col-sm-4 control-label" style="line-height: 34px">身份证号</label>
             <div class="col-sm-8">
                 <input type="text" class="form-control" id="id_card" value="{{request('id_card')}}" placeholder="请输入身份证号">
             </div>
         </div>
         <div class="form-group">
-            <label for="areas" class="col-sm-4 control-label">来淮南入住县/区</label>
+            <label for="areas" class="col-sm-4 control-label" style="line-height: 34px">来淮南入住县/区</label>
             <div class=" col-sm-8">
                 <select name="areas" id="areas" class="form-control">
                     <option value>请选择...</option>
@@ -57,7 +57,6 @@
         <caption>填报列表</caption>
         <thead>
         <tr>
-            <th>序号</th>
             <th>姓名</th>
             <th>是否本人</th>
             <th>与填报者关系</th>
@@ -84,7 +83,6 @@
             @endempty
         @foreach($list['data']['rows'] as $key=>$value)
             <tr>
-                <td>{{$value['id']}}</td>
                 <td>{{$value['name']}}</td>
                 <td>{{$value['isSelf']}}</td>
                 <td>{{$value['relation']}}</td>
@@ -111,7 +109,7 @@
     </table>
 </div>
 @if(!empty($list['data']['rows']))
-    <ul class="pagination pagination-lg">
+    <ul class="pagination pagination-lg" >
         <li class="{{request('page',1)==1?"disabled":""}}"><a href="?name={{request('name')}}&id_card={{request('id_card')}}&areas={{request('areas')}}&page={{request('page')-1}}"  >&laquo;</a></li>
         @for($i=1;$i<=$list['data']['pages'];$i++)
             <li><a href="?name={{request('name')}}&id_card={{request('id_card')}}&areas={{request('areas')}}&page={{$i}}">{{$i}}</a></li>
