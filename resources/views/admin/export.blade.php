@@ -6,13 +6,17 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <style>
+        .table>tbody>tr>td{
+            white-space:nowrap;
+        }
+    </style>
 </head>
 <body>
 <table class="table">
     <caption>填报列表</caption>
     <thead>
     <tr>
-        <th>序号</th>
         <th>姓名</th>
         <th>是否本人</th>
         <th>与填报者关系</th>
@@ -39,7 +43,6 @@
     @endempty
     @foreach($list['data']['rows'] as $key=>$value)
         <tr>
-            <td>{{$value['id']}}</td>
             <td>{{$value['name']}}</td>
             <td>{{$value['isSelf']}}</td>
             <td>{{$value['relation']}}</td>
