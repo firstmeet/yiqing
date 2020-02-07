@@ -249,11 +249,13 @@
         },
         filters:{
             "f1":function (item) {
-                if (item!=0){
-                    return "有"
-                }else{
-                    return "无"
-                }
+               if(item==0){
+                   return "无"
+               }
+               if(item==null){
+                   return "无"
+               }
+               return "有"
             },
             "ftime":function (item) {
                 console.log(new Date(item))
