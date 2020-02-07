@@ -57,9 +57,9 @@
             <td>{{$value['nowLocatAddr']}}</td>
             <td>{{$value['carNum']}}</td>
             <td>{{$value['companyName']}}</td>
-            <td>{{$value['isToHubei']}}</td>
-            <td>{{$value['isContactHb']}}</td>
-            <td>{{$value['isContactFy']}}</td>
+            <td>{!! $value['isToHubei']?"有":"无" !!}</td>
+            <td>{!! $value['isContactHb']?"有":"无" !!}</td>
+            <td>{!! $value['isContactFy']?"有":"无" !!}</td>
             <td>{{$value['createTime']}}</td>
         </tr>
 
