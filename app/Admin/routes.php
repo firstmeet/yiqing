@@ -12,5 +12,6 @@ Route::group([
 
     $router->get('/', 'HomeController@index')->name('admin.home');
     $router->get('/download','HomeController@download')->name('admin.download');
+    $router->post('/getList','HomeController@getList')->name('admin.getList');
 
 });
