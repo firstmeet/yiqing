@@ -60,7 +60,7 @@
             <td>{!! $value['isToHubei']?"有":"无" !!}</td>
             <td>{!! $value['isContactHb']?"有":"无" !!}</td>
             <td>{!! $value['isContactFy']?"有":"无" !!}</td>
-            <td>{{$value['createTime']}}</td>
+            <td>{!! date('Y-m-d H:i:s',strtotime($value['createTime'])) !!}</td>
         </tr>
 
     @endforeach
