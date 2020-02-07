@@ -33,6 +33,12 @@ class HomeController extends Controller
         $id_card=urlencode(trim($id_card));
         $areas=urlencode(trim($areas));
         $body=file_get_contents("http://112.29.244.243:9999/yiqing-register/register/querySomth?idCard=".$id_card."&name=".$name."&areas=".$areas."&currentPageNo=".request('page',1)."&pageSize=".request('pageSize',15));
-        return $body;
+        $body=json_decode($body,true);
+        if (!empty($body['data']['rows'])){
+            foreach ($body['data']['rows'] as $key=>$value){
+                $value['createTime']=date('Y-m-d H:i:s',strtotime($value['createTime']));
+            }
+        }
+        return response()->json($body);
     }
 }
