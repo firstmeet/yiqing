@@ -19,10 +19,13 @@
         .table>tbody>tr>td{
             white-space:nowrap;
         }
+        [v-cloak]{
+            display: none;
+        }
     </style>
 </head>
 <body>
-<div id="app">
+<div id="app" v-cloak>
     <form role="form" class="form-inline">
         <div class="form-group">
             <label for="name" class="col-sm-3 control-label" style="line-height: 34px">姓名</label>

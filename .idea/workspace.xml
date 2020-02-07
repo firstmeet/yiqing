@@ -1,16 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="5bfefdb2-1542-4b11-93bd-f7e6bd0f2d4d" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/public/js/bootstrap.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/js/extendPagination.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Admin/Controllers/HomeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Admin/Controllers/HomeController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Admin/routes.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Admin/routes.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Middleware/VerifyCsrfToken.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Middleware/VerifyCsrfToken.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/LList.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/LList.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admin/man_list.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/man_list.blade.php" afterDir="false" />
-    </list>
+    <list default="true" id="5bfefdb2-1542-4b11-93bd-f7e6bd0f2d4d" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -183,7 +174,7 @@
       <option name="presentableId" value="Default" />
       <updated>1580964558944</updated>
       <workItem from="1580964560090" duration="14842000" />
-      <workItem from="1581046609789" duration="12166000" />
+      <workItem from="1581046609789" duration="12508000" />
     </task>
     <servers />
   </component>
