@@ -6,8 +6,10 @@ use Illuminate\Contracts\View\View;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\FromView;
 use Maatwebsite\Excel\Concerns\ShouldAutoSize;
+use Maatwebsite\Excel\Concerns\WithCustomValueBinder;
+use PhpOffice\PhpSpreadsheet\Cell\StringValueBinder;
 
-class UsersExport implements FromView,ShouldAutoSize
+class UsersExport extends StringValueBinder implements FromView,ShouldAutoSize,WithCustomValueBinder
 {
     public function view(): View
     {
