@@ -228,7 +228,6 @@
             getList:function (name,id_card,areas,page,pageSize) {
                 var _this=this
                 $.post("/admin/getList",{"name":name,"id_card":id_card,"areas":areas,"page":page,"pageSize":pageSize},function (res){
-                   res=JSON.parse(res)
                     _this.list=res.data.rows
                     _this.total=res.data.total
                     _this.pages=res.data.pages
@@ -255,6 +254,9 @@
                 }else{
                     return "无"
                 }
+            },
+            "ftime":function (item) {
+                console.log(new Date(item))
             }
         },
     })
