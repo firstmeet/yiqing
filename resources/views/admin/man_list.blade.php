@@ -9,7 +9,7 @@
     <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
     <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="/js/extendPagination.js"></script>
-    <script src="https://cdn.bootcss.com/vue/2.2.2/vue.min.js"></script>
+    <script src="/js/vue.min.js"></script>
     <title>Document</title>
     <style>
         .test{
