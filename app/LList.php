@@ -8,7 +8,7 @@ class LList extends Model
 {
     public function paginate()
     {
-        $perPage = Request::get('per_page', 10);
+        $perPage = Request::get('pageSize', 10);
 
         $page = Request::get('page', 1);
 
@@ -20,9 +20,13 @@ class LList extends Model
         $name=urlencode(trim($name));
         $id_card=urlencode(trim($id_card));
         $areas=urlencode(trim($areas));
-        $body=file_get_contents("http://112.29.244.243:9999/yiqing-register/register/querySomth?idCard=".$id_card."&name=".$name."&areas=".$areas);
+        $body=file_get_contents("http://112.29.244.243:9999/yiqing-register/register/querySomth?idCard=".$id_card."&name=".$name."&areas=".$areas."&currentPage=".$page."&pageSize=".$perPage);
 
-        $data = json_decode($data, true);
+        $data = json_decode($body, true);
+
+        extract($data['data']);
+        $paginator = new LengthAwarePaginator($rows, $pages, $perPage);
+        $paginator->setPath(url()->current());
 
 
         return $paginator;
