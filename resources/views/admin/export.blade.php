@@ -34,6 +34,9 @@
         <th>湖北地区旅游史</th>
         <th>与湖北地区人员接触史</th>
         <th>新型冠状病毒感染的肺炎病例接触史</th>
+        <th>交通类型</th>
+        <th>是否发热</th>
+        <th>发热度数</th>
         <th>创建时间</th>
     </tr>
     </thead>
@@ -60,6 +63,9 @@
             <td>{!! $value['isToHubei']?"有":"无" !!}</td>
             <td>{!! $value['isContactHb']?"有":"无" !!}</td>
             <td>{!! $value['isContactFy']?"有":"无" !!}</td>
+            <td>{!! $value['trafficType'] !!}</td>
+            <td>{!! $value['isFever'] !!}</td>
+            <td>{!! $value['feverDegree'] !!}</td>
             <td>{!! date('Y-m-d H:i:s',strtotime($value['createTime'])) !!}</td>
         </tr>
 
