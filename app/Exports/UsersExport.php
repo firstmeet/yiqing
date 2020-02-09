@@ -2,15 +2,18 @@
 
 namespace App\Exports;
 
+use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Contracts\View\View;
+use Maatwebsite\Excel\Concerns\Exportable;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\FromView;
 use Maatwebsite\Excel\Concerns\ShouldAutoSize;
 use Maatwebsite\Excel\Concerns\WithCustomValueBinder;
 use PhpOffice\PhpSpreadsheet\Cell\StringValueBinder;
 
-class UsersExport extends StringValueBinder implements FromView,ShouldAutoSize,WithCustomValueBinder
+class UsersExport extends StringValueBinder implements FromView,ShouldAutoSize,WithCustomValueBinder,ShouldQueue
 {
+    use Exportable;
     public function view(): View
     {
         $id_card=request('id_card',null);
@@ -24,6 +27,9 @@ class UsersExport extends StringValueBinder implements FromView,ShouldAutoSize,W
         $total=$body['data']['total'];
         $body1=file_get_contents("http://112.29.244.243:9999/yiqing-register/register/querySomth?idCard=".$id_card."&name=".$name."&areas=".$areas."&currentPageNo=".request('page',1)."&pageSize=".$total);
         $body1=json_decode($body1,true);
+        $data=collect($body1['data']['rows'])->keyBy("idCard");
+        $data=array_values($data->toArray());
+        $body1['data']['rows']=$data;
         return view('admin.export', [
             'list' => $body1
         ]);
