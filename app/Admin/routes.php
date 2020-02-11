@@ -15,5 +15,7 @@ Route::group([
     $router->get('/download_template','HomeController@download_template')->name('admin.download_template');
     $router->post('/getList','HomeController@getList')->name('admin.getList');
     $router->get('/test','HomeController@test')->name('admin.test');
+    $router->get('/tongji_ui','HomeController@tongji_ui')->name('admin.tongjiui');
+    $router->post('/tongji','HomeController@tongji')->name('admin.tongji');
 
 });
