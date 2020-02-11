@@ -94,12 +94,22 @@ class EmailExport  implements FromCollection,WithHeadings,ShouldAutoSize
                 }
             }
         }
-        $arr_total=["id"=>"总计",'number'=>"0",'fever'=>"0",'contact_hb'=>"0"];
+        $arr_total=["id"=>"总计","number"=>"0","fever"=>"0","contact_hb"=>"0"];
         foreach ($arr as $key=>&$value){
             $arr_total['number']+=$value['number'];
             $arr_total['fever']+=$value['fever'];
             $arr_total['contact_hb']+=$value['contact_hb'];
         }
+        if ($arr_total["contact_hb"]==0){
+            $arr_total["contact_hb"]="0";
+        }
+        if ($arr_total["number"]==0){
+            $arr_total["number"]="0";
+        }
+        if ($arr_total["fever"]==0){
+            $arr_total["fever"]="0";
+        }
+
         array_push($arr,$arr_total);
         return collect($arr);
     }
