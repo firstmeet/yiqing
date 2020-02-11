@@ -20,13 +20,14 @@ class HomeController extends Controller
 
         return $content->view('admin.man_list');
     }
-    public function download()
+    public function tongji_ui()
     {
-        return Excel::download(new UsersExport(),'list.xlsx');
-    }
-    public function getList(Request $request)
-    {
+        $content=new Content();
 
+        return $content->view('admin.tongji');
+    }
+    public function tongji()
+    {
         $id_card = request('id_card', null);
         $name = request('name', null);
         $areas = request('areas', null);
@@ -41,11 +42,11 @@ class HomeController extends Controller
         $data = collect($body1['data']['rows'])->keyBy("idCard");
         $time=\request('time',date('Y-m-d',time()));
 
-            $data=$data->filter(function ($value,$key)use ($time){
-                $create_time=date('Y-m-d',strtotime($value['createTime']));
-                return strtotime($create_time)==strtotime($time);
-            });
-            $data = $data->all();
+        $data=$data->filter(function ($value,$key)use ($time){
+            $create_time=date('Y-m-d',strtotime($value['createTime']));
+            return strtotime($create_time)==strtotime($time);
+        });
+        $data = $data->all();
 
         $body1['data']['rows'] = $data;
         $areas_str = "田家庵区
@@ -109,6 +110,26 @@ class HomeController extends Controller
         }
         array_push($arr,$arr_total);
         return response()->json($arr);
+    }
+    public function download()
+    {
+        return Excel::download(new UsersExport(),'list.xlsx');
+    }
+    public function getList(Request $request)
+    {
+        $id_card=request('id_card',null);
+        $name=request('name',null);
+        $areas=request('areas',null);
+        $name=urlencode(trim($name));
+        $id_card=urlencode(trim($id_card));
+        $areas=urlencode(trim($areas));
+        $body1=file_get_contents("http://112.29.244.243:9999/yiqing-register/register/querySomth?idCard=".$id_card."&name=".$name."&areas=".$areas."&currentPageNo=".request('page',1)."&pageSize=".\request('pageSize',15));
+        $body1=json_decode($body1,true);
+        $data=collect($body1['data']['rows'])->keyBy("idCard");
+        $data=array_values($data->toArray());
+        $body1['data']['rows']=$data;
+        return response()->json($body1);
+
     }
     public function test()
     {
