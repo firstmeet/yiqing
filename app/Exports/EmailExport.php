@@ -4,9 +4,16 @@ namespace App\Exports;
 
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\ShouldAutoSize;
+use Maatwebsite\Excel\Concerns\WithColumnFormatting;
+use Maatwebsite\Excel\Concerns\WithCustomValueBinder;
 use Maatwebsite\Excel\Concerns\WithHeadings;
+use PhpOffice\PhpSpreadsheet\Cell\Cell;
+use PhpOffice\PhpSpreadsheet\Cell\DataType;
+use PhpOffice\PhpSpreadsheet\Cell\DefaultValueBinder;
+use PhpOffice\PhpSpreadsheet\Cell\StringValueBinder;
+use PhpOffice\PhpSpreadsheet\Style\NumberFormat;
 
-class EmailExport implements FromCollection,WithHeadings,ShouldAutoSize
+class EmailExport  implements FromCollection,WithHeadings,ShouldAutoSize
 {
     public $time;
     public function __construct($time)
@@ -52,9 +59,9 @@ class EmailExport implements FromCollection,WithHeadings,ShouldAutoSize
         $arr = [];
         foreach ($areas_list as $key => $value) {
             $arr[$key]['id'] = $value;
-            $arr[$key]['number'] = 0;
-            $arr[$key]['fever'] = 0;
-            $arr[$key]['contact_hb'] = 0;
+            $arr[$key]['number'] = "0";
+            $arr[$key]['fever'] = "0";
+            $arr[$key]['contact_hb'] = "0";
 
         }
         foreach ($data as $key=>$value){
@@ -87,8 +94,8 @@ class EmailExport implements FromCollection,WithHeadings,ShouldAutoSize
                 }
             }
         }
-        $arr_total=["id"=>"总计",'number'=>0,'fever'=>0,'contact_hb'=>0];
-        foreach ($arr as $key=>$value){
+        $arr_total=["id"=>"总计",'number'=>"0",'fever'=>"0",'contact_hb'=>"0"];
+        foreach ($arr as $key=>&$value){
             $arr_total['number']+=$value['number'];
             $arr_total['fever']+=$value['fever'];
             $arr_total['contact_hb']+=$value['contact_hb'];
