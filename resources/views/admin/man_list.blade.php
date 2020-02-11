@@ -10,6 +10,9 @@
     <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="/js/extendPagination.js"></script>
     <script src="/js/vue.min.js"></script>
+    <link href="https://cdn.bootcss.com/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
+    <script src="https://cdn.bootcss.com/moment.js/2.22.1/moment-with-locales.min.js"></script>
+    <script src="https://cdn.bootcss.com/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
     <title>Document</title>
     <style>
         .test{
@@ -41,7 +44,7 @@
         </div>
         <div class="form-group">
             <label for="areas" class="col-sm-4 control-label" style="line-height: 34px">来淮南入住县/区</label>
-            <div class=" col-sm-8">
+            <div class="col-sm-8">
                 <select name="areas" id="areas" v-model="areas" class="form-control">
                     <option value>请选择...</option>
                     <option value="寿县">寿县</option>
@@ -57,11 +60,17 @@
                     <option value="淮南新桥国际产业园">淮南新桥国际产业园</option>
                 </select>
             </div>
-
+        </div>
+        <div class="form-group">
+            <label for="datetime" class="col-sm-4 control-label" style="line-height: 34px">选择日期</label>
+            <div class="col-sm-8">
+                <input type="text"  class="form-control" id="datetime" />
+            </div>
         </div>
         <button type="button" class="btn btn-primary search" @click="search">查询</button>
         <button type="button" class="btn btn-danger" @click="reset">重置</button>
         <button type="button" class="btn btn-default export">导出</button>
+        <button type="button" class="btn btn-default export_2">导出统计数据</button>
     </form>
 </div>
 
@@ -269,9 +278,20 @@
 
         window.location.href="admin/download?name="+name+"&id_card="+id_card+"&areas="+areas
     })
+    $(".export_2").click(function () {
+        var name=$("#name").val()
+        var id_card=$("#id_card").val()
+        var areas=$("#areas").val()
+        var time=$("#datetime").val()
+
+        window.location.href="admin/download_template?name="+name+"&id_card="+id_card+"&areas="+areas+"&time="+time
+    })
     $(".disabled").click(function () {
         return false
     })
+    $("#datetime").datetimepicker({format: 'YYYY-MM-DD'}
+
+    );
 </script>
 </body>
 </html>
