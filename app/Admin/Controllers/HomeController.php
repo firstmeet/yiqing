@@ -40,15 +40,12 @@ class HomeController extends Controller
         $body1 = json_decode($body1, true);
         $data = collect($body1['data']['rows'])->keyBy("idCard");
         $time=\request('time',date('Y-m-d',time()));
-        if (\request('time')){
+       
             $data=$data->filter(function ($value,$key)use ($time){
                 $create_time=date('Y-m-d',strtotime($value['createTime']));
                 return strtotime($create_time)==strtotime($time);
             });
-            $data = array_values($data->all());
-        }else{
-            $data=$data->toArray();
-        }
+            $data = $data->all();
 
         $body1['data']['rows'] = $data;
         $areas_str = "田家庵区
@@ -198,7 +195,7 @@ class HomeController extends Controller
     }
     public function download_template()
     {
-        $time=\request('time');
+        $time=\request('time',date('Y-m-d',time()));
         return Excel::download(new EmailExport($time),date('Ymd').'_export.xlsx');
     }
 
