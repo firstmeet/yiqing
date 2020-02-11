@@ -40,7 +40,7 @@ class HomeController extends Controller
         $body1 = json_decode($body1, true);
         $data = collect($body1['data']['rows'])->keyBy("idCard");
         $time=\request('time',date('Y-m-d',time()));
-       
+
             $data=$data->filter(function ($value,$key)use ($time){
                 $create_time=date('Y-m-d',strtotime($value['createTime']));
                 return strtotime($create_time)==strtotime($time);

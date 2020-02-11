@@ -195,11 +195,7 @@
             datetime:''
         },
         mounted(){
-            $("#loading").busyLoad("show",{
-                background: "#000",
-                spinner: "cube",
-                animation: "slide"
-            });
+
             this.getList()
         },
         watch:{
@@ -209,6 +205,11 @@
         },
         methods:{
             getList:function (time) {
+                $("#loading").busyLoad("show",{
+                    background: "rgba(255, 152, 0, 0.86)",
+                    spinner: "cube",
+                    animation: "slide"
+                });
                 var _this=this
                 $.post("/admin/getList",{'time':time},function (res){
                     _this.list=res
