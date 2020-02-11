@@ -264,7 +264,7 @@
         var areas=$("#areas").val()
         var time=$("#datetime").val()
 
-        window.location.href="admin/download_template?name="+name+"&id_card="+id_card+"&areas="+areas+"&time="+time
+        window.location.href="download_template?name="+name+"&id_card="+id_card+"&areas="+areas+"&time="+time
     })
     $(".disabled").click(function () {
         return false
