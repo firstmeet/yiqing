@@ -39,7 +39,7 @@ class HomeController extends Controller
         $total = $body['data']['total'];
         $body1 = file_get_contents("http://112.29.244.243:9999/yiqing-register/register/querySomth?idCard=" . $id_card . "&name=" . $name . "&areas=" . $areas . "&currentPageNo=" . request('page', 1) . "&pageSize=" . $total);
         $body1 = json_decode($body1, true);
-        $data = collect($body1['data']['rows'])->keyBy("idCard");
+        $data = collect($body1['data']['rows']);
         $time=\request('time',date('Y-m-d',time()));
 
         $data=$data->filter(function ($value,$key)use ($time){
@@ -125,9 +125,6 @@ class HomeController extends Controller
         $areas=urlencode(trim($areas));
         $body1=file_get_contents("http://112.29.244.243:9999/yiqing-register/register/querySomth?idCard=".$id_card."&name=".$name."&areas=".$areas."&currentPageNo=".request('page',1)."&pageSize=".\request('pageSize',15));
         $body1=json_decode($body1,true);
-        $data=collect($body1['data']['rows'])->keyBy("idCard");
-        $data=array_values($data->toArray());
-        $body1['data']['rows']=$data;
         return response()->json($body1);
 
     }

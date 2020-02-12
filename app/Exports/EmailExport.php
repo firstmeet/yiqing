@@ -32,7 +32,7 @@ class EmailExport  implements FromCollection,WithHeadings,ShouldAutoSize
         $total = $body['data']['total'];
         $body1 = file_get_contents("http://112.29.244.243:9999/yiqing-register/register/querySomth?pageSize=" . $total);
         $body1 = json_decode($body1, true);
-        $data = collect($body1['data']['rows'])->keyBy("idCard");
+        $data = collect($body1['data']['rows']);
         $time=$this->time;
         $data=$data->filter(function ($value,$key)use ($time){
             $create_time=date('Y-m-d',strtotime($value['createTime']));
