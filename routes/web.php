@@ -11,6 +11,4 @@
 |
 */
 
-Route::get('/', function () {
-    return redirect('/admin');
-});
+Route::get('/','HomeController@index');
