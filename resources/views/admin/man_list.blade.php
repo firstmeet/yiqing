@@ -27,6 +27,10 @@
 <body>
 <div id="app" v-cloak>
     <form role="form" class="form-inline">
+        <div id="myAlert" class="alert alert-danger" @if(session()->has('url'))  @else style="display: none" @endif>
+            <a href="#" class="close" data-dismiss="alert">&times;</a>
+            <strong>文件正在下载到服务器，请稍等几5分钟左右再点击下载按钮去下载文件</strong>
+        </div>
         <div class="form-group">
             <label for="name" class="col-sm-3 control-label" style="line-height: 34px">姓名</label>
             <div class="col-sm-9">
@@ -62,6 +66,14 @@
         <button type="button" class="btn btn-primary search" @click="search">查询</button>
         <button type="button" class="btn btn-danger" @click="reset">重置</button>
         <button type="button" class="btn btn-default export">导出</button>
+        @if(session()->has('url'))
+            <button type="button" class="btn btn-default down" data="{{session()->get('url')}}">下载</button>
+            <script>
+                $(".close").click(function(){
+                    $("#myAlert").alert();
+                });
+            </script>
+            @endif
     </form>
 </div>
 
@@ -271,6 +283,10 @@
     })
     $(".disabled").click(function () {
         return false
+    })
+    $(".down").click(function () {
+        var url=$(this).attr("data")
+        window.open(url);
     })
 </script>
 </body>

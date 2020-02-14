@@ -129,7 +129,9 @@ class HomeController extends Controller
                 Yiqing::create($v);
             }
         }
-        return Excel::download(new UsersExport(),'list.xlsx');
+         Excel::store(new UsersExport(),'public/'.date('Ymd').'.xlsx');
+        session()->flash('url','storage/'.date('Ymd').'.xlsx');
+        return back()->with("Success");
     }
     public function getList(Request $request)
     {
