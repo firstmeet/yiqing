@@ -10,11 +10,12 @@ use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\FromQuery;
 use Maatwebsite\Excel\Concerns\FromView;
 use Maatwebsite\Excel\Concerns\ShouldAutoSize;
+use Maatwebsite\Excel\Concerns\WithCustomChunkSize;
 use Maatwebsite\Excel\Concerns\WithCustomValueBinder;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 use PhpOffice\PhpSpreadsheet\Cell\StringValueBinder;
 
-class UsersExport implements FromQuery,WithHeadings,ShouldQueue
+class UsersExport implements FromQuery,WithHeadings,ShouldQueue,WithCustomChunkSize
 {
     use Exportable;
 
@@ -44,5 +45,9 @@ class UsersExport implements FromQuery,WithHeadings,ShouldQueue
             "新型冠状病毒感染的肺炎病例接触史",
             "创建时间"
         ];
+    }
+    public function chunkSize(): int
+    {
+       return 10000;
     }
 }

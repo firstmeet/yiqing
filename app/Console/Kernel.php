@@ -29,7 +29,7 @@ class Kernel extends ConsoleKernel
     {
         // $schedule->command('inspire')
         //          ->hourly();
-        $schedule->command('export')->everyMinute()->withoutOverlapping()->runInBackground();
+        $schedule->command('export')->everyFiveMinutes()->withoutOverlapping()->runInBackground();
 //        $schedule->command('email_export')->everyMinute()->withoutOverlapping();
     }
 
