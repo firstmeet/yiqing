@@ -123,7 +123,7 @@ class HomeController extends Controller
         $name=urlencode(trim($name));
         $id_card=urlencode(trim($id_card));
         $areas=urlencode(trim($areas));
-        $body1=file_get_contents("http://112.29.244.243:9999/yiqing-register/register/querySomth?idCard=".$id_card."&name=".$name."&areas=".$areas."&currentPageNo=".request('page',1)."&pageSize=".\request('pageSize',15));
+        $body1=file_get_contents("http://112.29.244.243:9999/yiqing-register/register/querySomth?idCard=".$id_card."&name=".$name."&areas=".$areas."&currentPageNo=".request('page',1)."&pageSize=".\request('pageSize',10));
         $body1=json_decode($body1,true);
         return response()->json($body1);
 

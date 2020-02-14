@@ -3,6 +3,7 @@
 namespace App\Console\Commands;
 
 use App\Exports\UsersExport;
+use App\Yiqing;
 use Illuminate\Console\Command;
 use Maatwebsite\Excel\Facades\Excel;
 
@@ -39,12 +40,19 @@ class Export extends Command
      */
     public function handle()
     {
-        $body=file_get_contents("http://112.29.244.243:9999/yiqing-register/register/querySomth?currentPageNo=".request('page',1)."&pageSize=".request('pageSize',1));
-        $body=json_decode($body,true);
-        $total=$body['data']['total'];
-        $size=ceil($total/10000);
-        for ($i=1;$i<=$size;$i++){
-            Excel::store(new UsersExport($size),date('Ymd').'_'.$size.'.xlsx');
+        $body = file_get_contents("http://112.29.244.243:9999/yiqing-register/register/querySomth?&currentPageNo=1&pageSize=1");
+        $body = json_decode($body, true);
+        $total = $body['data']['total'];
+        $body1 = file_get_contents("http://112.29.244.243:9999/yiqing-register/register/querySomth?currentPageNo=1&pageSize=" . $total);
+        $body1 = json_decode($body1, true);
+        $data = collect($body1['data']['rows']);
+        $len=count($data);
+        $len_data=Yiqing::count();
+        if ($len>$len_data){
+            $slice = $data->slice(0,$len-$len_data);
+           foreach ($slice->all() as $key=>$v){
+                   Yiqing::create($v);
+           }
         }
     }
 }
