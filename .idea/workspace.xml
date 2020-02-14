@@ -2,7 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5bfefdb2-1542-4b11-93bd-f7e6bd0f2d4d" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Admin/Controllers/HomeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Admin/Controllers/HomeController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Exports/UsersExport.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Exports/UsersExport.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Yiqing.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Yiqing.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2020_02_14_194139_create_yiqings_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_02_14_194139_create_yiqings_table.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -185,7 +189,7 @@
       <workItem from="1581417762418" duration="15658000" />
       <workItem from="1581475885730" duration="2478000" />
       <workItem from="1581667032735" duration="10000" />
-      <workItem from="1581672349314" duration="9743000" />
+      <workItem from="1581672349314" duration="13785000" />
     </task>
     <servers />
   </component>

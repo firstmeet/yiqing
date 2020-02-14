@@ -5,6 +5,7 @@ namespace App\Admin\Controllers;
 use App\Exports\EmailExport;
 use App\Exports\UsersExport;
 use App\Http\Controllers\Controller;
+use App\Yiqing;
 use Encore\Admin\Controllers\Dashboard;
 use Encore\Admin\Layout\Column;
 use Encore\Admin\Layout\Content;
@@ -113,6 +114,20 @@ class HomeController extends Controller
     }
     public function download()
     {
+        $body = file_get_contents("http://112.29.244.243:9999/yiqing-register/register/querySomth?&currentPageNo=1&pageSize=1");
+        $body = json_decode($body, true);
+        $total = $body['data']['total'];
+        $body1 = file_get_contents("http://112.29.244.243:9999/yiqing-register/register/querySomth?currentPageNo=1&pageSize=" . $total);
+        $body1 = json_decode($body1, true);
+        $data = collect($body1['data']['rows']);
+        $len=count($data);
+        $len_data=Yiqing::count();
+        if ($len>$len_data){
+            $slice = $data->slice(0,$len-$len_data);
+            foreach ($slice->all() as $key=>$v){
+                Yiqing::create($v);
+            }
+        }
         return Excel::download(new UsersExport(),'list.xlsx');
     }
     public function getList(Request $request)

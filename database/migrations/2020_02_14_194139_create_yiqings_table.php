@@ -16,15 +16,25 @@ class CreateYiqingsTable extends Migration
         Schema::create('yiqings', function (Blueprint $table) {
             $table->string('id');
             $table->string('name');
+            $table->string('isSelf')->nullable();
+            $table->string('relation')->nullable();
             $table->string('idCard');
             $table->string('mobile');
-            $table->string('areas');
-            $table->string('beforeLocat');
-            $table->string('beforeLocatAddr');
-            $table->string('nowLocat');
-            $table->string('nowLocatAddr');
-            $table->string('carNum');
-            $table->string('companyName');
+            $table->string('areas')->nullable();
+            $table->string('beforeLocat')->nullable();
+            $table->string('beforeLocatAddr')->nullable();
+            $table->string('nowLocat')->nullable();
+            $table->string('nowLocatAddr')->nullable();
+            $table->string('carNum')->nullable();
+            $table->string('companyName')->nullable();
+            $table->string('fromWhere')->nullable();
+            $table->string('arrivalTime')->nullable();
+            $table->string('isToHubei')->nullable();
+            $table->string('isContactHb')->nullable();
+            $table->string('isContactFy')->nullable();
+            $table->string('trafficType')->nullable();
+            $table->string('isFever')->nullable();
+            $table->string('feverDegree')->nullable();
             $table->timestamps();
         });
     }
