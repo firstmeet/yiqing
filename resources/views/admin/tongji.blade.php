@@ -148,7 +148,7 @@
         var id_card=$("#id_card").val()
         var areas=$("#areas").val()
 
-        window.location.href="admin/download?name="+name+"&id_card="+id_card+"&areas="+areas
+        window.open("admin/download?name="+name+"&id_card="+id_card+"&areas="+areas)
     })
     $(".export_2").click(function () {
         var name=$("#name").val()
@@ -156,7 +156,7 @@
         var areas=$("#areas").val()
         var time=$("#datetime").val()
 
-        window.location.href="download_template?name="+name+"&id_card="+id_card+"&areas="+areas+"&time="+time
+        window.open("download_template?name="+name+"&id_card="+id_card+"&areas="+areas+"&time="+time)
     })
     $(".disabled").click(function () {
         return false

@@ -39,6 +39,12 @@ class Export extends Command
      */
     public function handle()
     {
-        return Excel::store(new UsersExport(),date('Ymd').'.xlsx');
+        $body=file_get_contents("http://112.29.244.243:9999/yiqing-register/register/querySomth?currentPageNo=".request('page',1)."&pageSize=".request('pageSize',1));
+        $body=json_decode($body,true);
+        $total=$body['data']['total'];
+        $size=ceil($total/10000);
+        for ($i=1;$i<=$size;$i++){
+            Excel::store(new UsersExport($size),date('Ymd').'_'.$size.'.xlsx');
+        }
     }
 }
