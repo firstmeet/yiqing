@@ -15,7 +15,7 @@ use Maatwebsite\Excel\Concerns\WithCustomValueBinder;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 use PhpOffice\PhpSpreadsheet\Cell\StringValueBinder;
 
-class UsersExport implements FromQuery,WithHeadings,ShouldQueue,WithCustomChunkSize
+class UsersExport extends StringValueBinder implements FromQuery,WithHeadings,ShouldQueue,WithCustomChunkSize
 {
     use Exportable;
 
