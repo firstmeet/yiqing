@@ -67,13 +67,6 @@
         <button type="button" class="btn btn-danger" @click="reset">重置</button>
         <button type="button" class="btn btn-default export">导出</button>
         @if(session('url'))
-            <div>1111</div>
-
-            <script>
-                $(".close").click(function(){
-                    $("#myAlert").alert();
-                });
-            </script>
             @endif
     </form>
 </div>
