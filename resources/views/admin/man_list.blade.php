@@ -67,7 +67,8 @@
         <button type="button" class="btn btn-danger" @click="reset">重置</button>
         <button type="button" class="btn btn-default export">导出</button>
         @if(\Illuminate\Support\Facades\Session::has('url'))
-            <button type="button" class="btn btn-default down" data="{{session()->get('url')}}">下载</button>
+            <html>1111</html>
+
             <script>
                 $(".close").click(function(){
                     $("#myAlert").alert();

@@ -19,7 +19,7 @@ class HomeController extends Controller
     public function index(Content $content)
     {
         $content=new Content();
-
+        dd(Session::get('url'));
         return $content->view('admin.man_list');
     }
     public function tongji_ui()
