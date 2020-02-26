@@ -114,6 +114,7 @@ class HomeController extends Controller
     }
     public function download()
     {
+        dd(1);
         set_time_limit(0);
         $body = file_get_contents("http://112.29.244.243:9999/yiqing-register/register/querySomth?&currentPageNo=1&pageSize=1");
         $body = json_decode($body, true);
