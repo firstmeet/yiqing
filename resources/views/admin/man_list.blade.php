@@ -66,7 +66,7 @@
         <button type="button" class="btn btn-primary search" @click="search">查询</button>
         <button type="button" class="btn btn-danger" @click="reset">重置</button>
         <button type="button" class="btn btn-default export">导出</button>
-        @if(\Illuminate\Support\Facades\Session::has('url'))
+        @if(session('url'))
             <html>1111</html>
 
             <script>
