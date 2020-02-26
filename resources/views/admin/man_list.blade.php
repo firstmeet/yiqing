@@ -67,6 +67,7 @@
         <button type="button" class="btn btn-danger" @click="reset">重置</button>
         <button type="button" class="btn btn-default export">导出</button>
         @if(session('url'))
+            <button type="button" class="btn btn-default down" data="{{session()->get('url')}}">下载</button>
             @endif
     </form>
 </div>
