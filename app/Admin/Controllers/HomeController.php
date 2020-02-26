@@ -11,6 +11,7 @@ use Encore\Admin\Layout\Column;
 use Encore\Admin\Layout\Content;
 use Encore\Admin\Layout\Row;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 use Maatwebsite\Excel\Facades\Excel;
 
 class HomeController extends Controller
@@ -131,6 +132,7 @@ class HomeController extends Controller
         }
          Excel::store(new UsersExport(),'public/'.date('Ymd').'.xlsx');
         session()->flash('url','storage/'.date('Ymd').'.xlsx');
+        dd(Session::get('url'));
         return back()->with("Success");
     }
     public function getList(Request $request)
